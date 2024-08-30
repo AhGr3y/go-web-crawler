@@ -26,11 +26,11 @@ func TestNormalizeURL(t *testing.T) {
 		t.Run(name, func(t *testing.T) {
 			got, err := normalizeURL(c.input)
 			if err != nil && !strings.Contains(err.Error(), c.err) {
-				t.Errorf("Unexpected error: %s", err)
+				t.Errorf("FAIL: unexpected error: %v", err)
 				return
 			}
 			if got != c.want {
-				t.Errorf("%s != %s", got, c.want)
+				t.Errorf("FAIL: expected: %v, actual: %v", got, c.want)
 				return
 			}
 		})
