@@ -10,6 +10,12 @@ func (cfg *config) crawlPage(rawCurrentURL string) {
 		cfg.wg.Done()
 	}()
 
+	// Return if we collected max pages
+	isCapped := cfg.checkPageLength()
+	if isCapped {
+		return
+	}
+
 	// Return pages if rawCurrentURL does not have
 	// same domain as rawBaseURL.
 	isSameDomain, err := isSameDomain(cfg.baseURL.String(), rawCurrentURL)
